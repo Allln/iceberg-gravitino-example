@@ -1,0 +1,2 @@
+apache-gravitino>=0.6.0
+requests

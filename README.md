@@ -82,6 +82,7 @@ These will:
 
 Login to MinIO with:
 
+Psst!
 * **Access Key**: `minioadmin`
 * **Secret Key**: `minioadmin`
 
