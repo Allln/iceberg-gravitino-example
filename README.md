@@ -33,6 +33,7 @@ docker-compose up -d
 ### 2. Deploy Gravitino with Helm
 
 ```bash
+minikube start
 helm install gravitino charts/gravitino
 ```
 
@@ -60,24 +61,24 @@ pip install -r requirements.txt
 
 ### 5. Run Setup Scripts
 
+Create metalake dynamicaly or through Gravitino UI http://localhost:8090/ui/metalakes
 ```bash
 python create_catalog.py
 python create_schema.py
 ```
-
 These will:
 
-* Create a Metalake called `metalake`
 * Create a Catalog called `catalog`
 * Create a Schema called `schema`
+
 
 ---
 
 ## 📃 Web Interfaces
 
-* Trino UI: [http://localhost:8080/ui/](http://localhost:8080/ui/)
-* Gravitino UI: [http://localhost:8090/ui/metalakes?metalake=metalake\&catalog=catalog\&type=fileset\&schema=schema](http://localhost:8090/ui/metalakes?metalake=metalake&catalog=catalog&type=fileset&schema=schema)
-* MinIO Console: [http://localhost:9001/buckets](http://localhost:9001/buckets)
+* Trino UI: http://localhost:8080/ui/](http://localhost:8080/ui/
+* Gravitino UI: http://localhost:8090/ui/metalakes
+* MinIO Console: http://localhost:9001/buckets](http://localhost:9001/buckets
 
 Login to MinIO with:
 
