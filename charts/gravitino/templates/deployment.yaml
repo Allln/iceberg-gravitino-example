@@ -24,9 +24,7 @@ spec:
           env:
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx512m"
-          readinessProbe:
-            httpGet:
-              path: /v1/catalogs
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 5
+
+
+
+curl -X POST http://localhost:8090/v1/catalogs -H "Content-Type: application/json" -d '{"name": "iceberg_catalog","type": "iceberg","comment": "Iceberg catalog on MinIO","properties": {"uri": "s3a://warehouse", "s3.endpoint": "http://minio:9000", "s3.access-key": "minioadmin", "s3.secret-key": "minioadmin", "warehouse": "s3a://warehouse"}}'
