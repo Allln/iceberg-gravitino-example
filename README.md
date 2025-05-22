@@ -134,8 +134,3 @@ python create_schema.py
 
 ---
 
-## 🚀 You're Ready!
-
-You've deployed a full Iceberg stack with Trino + Gravitino + MinIO. You're ready to explore table creation, metadata management, and scalable SQL queries.
-
-Feel free to extend this with Flink, Spark, or more schemas later!
