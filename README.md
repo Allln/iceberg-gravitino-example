@@ -61,7 +61,8 @@ pip install -r requirements.txt
 
 ### 5. Run Setup Scripts
 
-Create metalake dynamicaly or through Gravitino UI http://localhost:8090/ui/metalakes
+Create metalake dynamicaly or through Gravitino UI 
+http://localhost:8090/ui/metalakes
 ```bash
 python create_catalog.py
 python create_schema.py
@@ -93,7 +94,7 @@ Create a bucket called `warehouse` in MinIO.
 ## ⚙️ Run Queries via Trino
 
 ```bash
-docker exec -it iceberg-gravitino-example-trino-1 trino --catalog iceberg --schema schema
+docker exec -it iceberg-gravitino-example-trino-1 trino --catalog catalog --schema schema
 ```
 
 Then run:
