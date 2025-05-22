@@ -1,4 +1,4 @@
-# 🧳 Iceberg + Gravitino + Trino + MinIO Example
+# Iceberg + Gravitino + Trino + MinIO Example
 
 This repository demonstrates a working deployment of a simple data lake stack using:
 
@@ -9,7 +9,7 @@ This repository demonstrates a working deployment of a simple data lake stack us
 
 ---
 
-## ✨ Components
+## Components
 
 | Component | Purpose                         | Access URL                                     |
 | --------- | ------------------------------- | ---------------------------------------------- |
@@ -19,7 +19,7 @@ This repository demonstrates a working deployment of a simple data lake stack us
 
 ---
 
-## ✅ Setup Instructions
+## Setup Instructions
 
 ### 1. Start MinIO + Trino with Docker Compose
 
@@ -49,7 +49,7 @@ Keep this running in a separate terminal.
 
 ---
 
-## 📝 Gravitino Setup
+## Gravitino Setup
 
 ### 4. Install Python Dependencies
 
@@ -75,7 +75,7 @@ These will:
 
 ---
 
-## 📃 Web Interfaces
+## Web Interfaces
 
 * Trino UI: http://localhost:8080/ui/](http://localhost:8080/ui/
 * Gravitino UI: http://localhost:8090/ui/metalakes
@@ -91,7 +91,7 @@ Create a bucket called `warehouse` in MinIO.
 
 ---
 
-## ⚙️ Run Queries via Trino
+##  Run Queries via Trino
 
 ```bash
 docker exec -it iceberg-gravitino-example-trino-1 trino --catalog catalog --schema schema
@@ -108,7 +108,7 @@ SELECT * FROM my_table;
 
 ---
 
-## ♻️ Restarting Everything After Reboot
+## ♻Restarting Everything After Reboot
 
 1. Start Docker stack:
 
