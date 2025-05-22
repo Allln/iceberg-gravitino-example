@@ -1,0 +1,19 @@
+image:
+  repository: apache/gravitino
+  tag: 0.9.0-incubating
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8090
+
+ingress:
+  enabled: false
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: gravitino
+description: A Helm chart for deploying Apache Gravitino
+type: application
+version: 0.1.0
+appVersion: "0.9.0-incubating"
