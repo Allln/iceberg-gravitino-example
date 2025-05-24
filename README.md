@@ -105,6 +105,22 @@ Then run:
 SHOW CATALOGS;
 SHOW SCHEMAS FROM iceberg;
 CREATE TABLE iceberg.demo.test_table (id INT, name VARCHAR);
+INSERT INTO iceberg.demo.test_table VALUES 
+    (3, 'Charlie'),
+    (4, 'Diana'),
+    (5, 'Eve');
+SELECT * FROM iceberg.demo.test_table WHERE id > 2;
+SELECT COUNT(*) FROM iceberg.demo.test_table;
+CREATE TABLE iceberg.demo.test_table_tmp AS 
+SELECT id, 
+       CASE WHEN name = 'Eve' THEN 'Evelyn' ELSE name END AS name 
+FROM iceberg.demo.test_table;
+
+DROP TABLE iceberg.demo.test_table;
+
+ALTER TABLE iceberg.demo.test_table_tmp RENAME TO test_table;
+ALTER TABLE iceberg.demo.test_table ADD COLUMN email VARCHAR;
+
 ```
 
 ---
