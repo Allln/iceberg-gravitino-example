@@ -1,0 +1,6 @@
+{
+  "namespace": ["demo"],
+  "properties": {
+    "location": "s3://warehouse/demo"
+  }
+}

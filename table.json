@@ -1,0 +1,19 @@
+{
+  "name": "my_table",
+  "comment": "A test Iceberg table",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int",
+      "nullable": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "nullable": true
+    }
+  ],
+  "properties": {
+    "format": "iceberg"
+  }
+}

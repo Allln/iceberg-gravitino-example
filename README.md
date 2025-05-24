@@ -34,7 +34,7 @@ docker-compose up -d
 
 ```bash
 minikube start
-helm install gravitino charts/gravitino
+helm install gravitino gravitino/charts/gravitino
 ```
 
 If it's already deployed, skip to the next step.
@@ -44,7 +44,6 @@ If it's already deployed, skip to the next step.
 ```bash
 kubectl port-forward service/gravitino 8090:8090
 ```
-
 Keep this running in a separate terminal.
 
 ---
@@ -63,6 +62,9 @@ pip install -r requirements.txt
 
 Create metalake dynamicaly or through Gravitino UI 
 http://localhost:8090/ui/metalakes
+or
+curl.exe -X POST "http://127.0.0.1:8090/api/metalakes" -H "Accept: application/vnd.gravitino.v1+json" -H "Content-Type: application/json" --data "@metalake.json"
+
 ```bash
 python create_catalog.py
 python create_schema.py
@@ -94,46 +96,15 @@ Create a bucket called `warehouse` in MinIO.
 ##  Run Queries via Trino
 
 ```bash
-docker exec -it iceberg-gravitino-example-trino-1 trino --catalog catalog --schema schema
+docker exec -it iceberg-gravitino-example-trino-1 trino
 ```
 
 Then run:
 
 ```sql
-SHOW TABLES;
-CREATE TABLE my_table (id INT, name VARCHAR);
-INSERT INTO my_table VALUES (1, 'Alice'), (2, 'Bob');
-SELECT * FROM my_table;
+SHOW CATALOGS;
+SHOW SCHEMAS FROM iceberg;
+CREATE TABLE iceberg.demo.test_table (id INT, name VARCHAR);
 ```
 
 ---
-
-## ♻Restarting Everything After Reboot
-
-1. Start Docker stack:
-
-```bash
-docker-compose up -d
-```
-
-2. Start port forwarding:
-
-```bash
-kubectl port-forward service/gravitino 8090:8090
-```
-
-3. (Optional) Rerun setup scripts if necessary:
-
-```bash
-python create_catalog.py
-python create_schema.py
-```
-
-4. Visit UIs:
-
-* [Trino](http://localhost:8080/ui/)
-* [Gravitino](http://localhost:8090/ui/metalakes?metalake=metalake&catalog=catalog&type=fileset&schema=schema)
-* [MinIO](http://localhost:9001/buckets)
-
----
-
