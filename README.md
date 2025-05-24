@@ -96,7 +96,23 @@ Create a bucket called `warehouse` in MinIO.
 ##  Run Queries via Trino
 
 ```bash
+* cheat sheat
+kubectl apply -f iceberg-rest/iceberg-rest.yaml
+kubectl apply -f minio/minio-host-forward.yaml
+kubectl rollout restart deployment iceberg-rest
+kubectl rollout restart deployment minio
+kubectl delete deployment gravitino iceberg-rest
+
+* get port and fill it to iceberg.properties
+
+minikube service iceberg-rest --url 
+docker-compose restart trino
+
 docker exec -it iceberg-gravitino-example-trino-1 trino
+
+kubectl port-forward service/minio 9000:9000
+kubectl port-forward service/iceberg-rest 63026:8181
+
 ```
 
 Then run:
@@ -104,6 +120,7 @@ Then run:
 ```sql
 SHOW CATALOGS;
 SHOW SCHEMAS FROM iceberg;
+CREATE SCHEMA iceberg.demo;
 CREATE TABLE iceberg.demo.test_table (id INT, name VARCHAR);
 INSERT INTO iceberg.demo.test_table VALUES 
     (3, 'Charlie'),

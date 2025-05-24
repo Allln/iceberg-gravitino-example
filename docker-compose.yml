@@ -15,7 +15,10 @@ services:
     ports:
       - 9001:9001
       - 9000:9000
+    volumes:
+      - minio-data:/data  # Add this
     command: ["server", "/data", "--console-address", ":9001"]
+
 
   trino:
     image: trinodb/trino:436
@@ -32,21 +35,7 @@ services:
       - minio
     networks:
       - iceberg_net
-  rest:
-    image: apache/iceberg-rest-fixture
-    container_name: iceberg-rest
 
-    networks:
-      iceberg_net:
-    ports:
-      - 8181:8181
-    environment:
-      - AWS_ACCESS_KEY_ID=admin
-      - AWS_SECRET_ACCESS_KEY=password
-      - AWS_REGION=us-east-1
-      - CATALOG_WAREHOUSE=s3://warehouse/
-      - CATALOG_IO__IMPL=org.apache.iceberg.aws.s3.S3FileIO
-      - CATALOG_S3_ENDPOINT=http://minio:9000
   mc:
     depends_on:
       - minio
@@ -54,12 +43,16 @@ services:
     container_name: mc
     networks:
       iceberg_net:
-    entrypoint: |
+    entrypoint: >
       /bin/sh -c "
-      until (/usr/bin/mc config host add minio http://minio:9000 admin password) do echo '...waiting...' && sleep 1; done;
-      /usr/bin/mc mb minio/warehouse || true;
-      /usr/bin/mc policy set public minio/warehouse;
+      until mc alias set myminio http://minio:9000 admin password; do sleep 2; done;
+      mc mb -p myminio/warehouse || true;
+      mc policy set public myminio/warehouse;
       tail -f /dev/null
       "
+
+
+volumes:
+  minio-data:
 networks:
   iceberg_net:
